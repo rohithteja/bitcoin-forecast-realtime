@@ -31,9 +31,11 @@ for i in [5,4,3,2,1]:
 
 # show predictions
 st.write('Predictions for next 5 days:')
-pred = pd.DataFrame(pd.date_range(df.tail(1).index.values[0], periods=6, freq='D')[1:], columns=['Date']).round(0)
+pred = pd.DataFrame(pd.date_range(df.tail(1).index.values[0], periods=6, freq='D')[1:], columns=['Date'])
 pred['Price (USD)'] = pred_list
 pred.Date = pd.to_datetime(pred.Date)
+pred.Date = pred.Date.dt.strftime('%Y-%m-%d')
+pred = pred.round(0)
 st.write(pred)
 
 # model performance
