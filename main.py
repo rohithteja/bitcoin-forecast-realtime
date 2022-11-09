@@ -35,7 +35,7 @@ pred = pd.DataFrame(pd.date_range(df.tail(1).index.values[0], periods=6, freq='D
 pred['Price (USD)'] = pred_list
 pred.Date = pd.to_datetime(pred.Date)
 pred.Date = pred.Date.dt.strftime('%Y-%m-%d')
-pred = pred.round(0)
+pred['Price (USD)'] = pred['Price (USD)'].round(0).astype(int)
 st.write(pred)
 
 # model performance
