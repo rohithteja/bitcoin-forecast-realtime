@@ -33,7 +33,7 @@ for i in [5,4,3,2,1]:
 st.write('Predictions for next 5 days:')
 pred = pd.DataFrame(pred_list, columns=['Price'])
 pred.index = pd.date_range(df.tail(1).index.values[0], periods=6, freq='D')[1:]
-st.write(pred_list)
+st.write(pred)
 
 # model performance
 st.write('Model performance:')
