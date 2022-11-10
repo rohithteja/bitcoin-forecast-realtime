@@ -18,11 +18,11 @@ def load_model():
 
 df = yf.download(tickers='BTC-USD', period = '6y', interval = '1d')
 
-# predict for next 5 days
+# predict for next 7 days
 model = load_model()
 pred_list = []
-for i in [5,4,3,2,1]:
-    if i == 5:
+for i in [7,6,5,4,3,2,1]:
+    if i == 7:
         X_test = df.tail(i).Close.T.values.reshape((1, 5, 1))
         pred = model.predict(X_test)[0]
         pred_list.append(pred)
@@ -39,7 +39,6 @@ st.write('Predictions for next 5 days:')
 pred = pd.DataFrame(pd.date_range(df.tail(1).index.values[0], periods=6, freq='D')[1:], columns=['Date'])
 pred['Price (USD)'] = pred_list
 pred.Date = pd.to_datetime(pred.Date)
-pred.Date = pred.Date.dt.strftime('%Y-%m-%d')
 pred['Price (USD)'] = pred['Price (USD)'].astype(int)
 st.write(pred)
 
@@ -50,9 +49,8 @@ df2['Date'] = df2.index
 df2 = df2[['Date', 'Close']]
 df2 = df2.rename(columns={'Close': 'Price (USD)'})
 df2.Date = pd.to_datetime(df2.Date)
-df2.Date = df2.Date.dt.strftime('%Y-%m-%d')
 
-fig, ax = plt.subplots(figsize=(10,5))
+fig, ax = plt.subplots(figsize=(20,10))
 ax.plot(df2.Date, df2['Price (USD)'], label='Current week price')
 ax.plot(pred.Date, pred['Price (USD)'], label='Forecast')
 ax.legend()
