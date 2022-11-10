@@ -7,7 +7,7 @@ from keras.layers import LSTM
 from keras.layers import Dense
 from keras.layers import Bidirectional
 import yfinance as yf
-from time import sleep
+from streamlit_autorefresh import st_autorefresh
 
 def load_model():
     model = pickle.load(open('artifacts/model.pkl', 'rb'))
@@ -46,3 +46,5 @@ st.write(df)
 
 st.image('artifacts/forecast_90days.png')
 
+
+st_autorefresh(interval=10000, key="dataframerefresh")
