@@ -17,8 +17,7 @@ def load_model():
     return model
 
 df = yf.download(tickers='BTC-USD', period = '6y', interval = '1d')
-update_metrics()
-retrain_model()
+
 # predict for next 7 days
 model = load_model()
 df2 = df.copy()
