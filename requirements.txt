@@ -3,3 +3,4 @@ tensorflow
 yfinance
 scikit-learn
 streamlit-autorefresh
+matplotlib
