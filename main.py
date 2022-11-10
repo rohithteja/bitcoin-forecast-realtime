@@ -43,7 +43,7 @@ st.write(pred)
 # plot current weeks price and forecast
 st.markdown('## Current week price and forecast')
 df3 = df.tail(7)
-df3['Date'] = df2.index
+df3['Date'] = df3.index
 df3 = df3[['Date', 'Close']]
 df3 = df3.rename(columns={'Close': 'Predicted Price (USD)'})
 df3.Date = pd.to_datetime(df3.Date)
