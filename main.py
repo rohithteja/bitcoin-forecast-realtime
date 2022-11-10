@@ -49,10 +49,8 @@ st.write(df)
 st.image('artifacts/forecast_90days.png')
 
 
-# count = st_autorefresh(interval=1440 * 60 * 1000, key="dataframerefresh")
-count = st_autorefresh(interval=5 * 60 * 1000, key="dataframerefresh")
+count = st_autorefresh(interval=1440 * 60 * 1000, key="dataframerefresh")
 
 if count == True:
-    st.write('Data is being refreshed')
     update_metrics()
     retrain_model()
