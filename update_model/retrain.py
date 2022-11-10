@@ -28,7 +28,7 @@ def retrain_model():
     n_features = 1
     X = X.values.reshape((X.shape[0], X.shape[1], n_features))
     model = Sequential()
-    model.add(Bidirectional(LSTM(50, activation='relu'), input_shape=(5, n_features)))
+    model.add(Bidirectional(LSTM(50, activation='relu'), input_shape=(7, n_features)))
     model.add(Dense(1))
     model.compile(optimizer='adam', loss='mse')
     # fit model
