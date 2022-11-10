@@ -24,12 +24,12 @@ model = load_model()
 pred_list = []
 for i in [7,6,5,4,3,2,1]:
     if i == 7:
-        X_test = df.tail(i).Close.T.values.reshape((1, 7, 1))
+        X_test = df.tail(i).Close.T.values.reshape((1, 3, 1))
         pred = model.predict(X_test)[0]
         pred_list.append(pred)
     else:
         temp = df.tail(i).Close.T.values
-        X_test = np.append(temp, pred_list).reshape((1, 7, 1)).astype(float)
+        X_test = np.append(temp, pred_list).reshape((1, 3, 1)).astype(float)
 
         pred = model.predict(X_test)[0]
         pred_list.append(pred)
