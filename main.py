@@ -33,6 +33,7 @@ for i in [5,4,3,2,1]:
         pred_list.append(pred)
 
 # show predictions
+st.title('Bitcoin Price Prediction')
 st.write('Predictions for next 5 days:')
 pred = pd.DataFrame(pd.date_range(df.tail(1).index.values[0], periods=6, freq='D')[1:], columns=['Date'])
 pred['Price (USD)'] = pred_list
@@ -40,6 +41,15 @@ pred.Date = pd.to_datetime(pred.Date)
 pred.Date = pred.Date.dt.strftime('%Y-%m-%d')
 pred['Price (USD)'] = pred['Price (USD)'].astype(int)
 st.write(pred)
+
+# plot current weeks price and forecast
+st.markdown('## Current week price and forecast')
+plt.figure(figsize=(10,5))
+plt.plot(df.tail(7).index, df.tail(7).Close, label='Current week price')
+plt.plot(pred.Date, pred['Price (USD)'], label='Forecast')
+plt.legend()
+plt.ylabel('Price (USD)')
+st.pyplot()
 
 # model performance
 st.write('Model performance:')
