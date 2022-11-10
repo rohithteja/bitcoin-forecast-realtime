@@ -7,6 +7,7 @@ from keras.layers import LSTM
 from keras.layers import Dense
 from keras.layers import Bidirectional
 import yfinance as yf
+from time import sleep
 
 def load_model():
     model = pickle.load(open('artifacts/model.pkl', 'rb'))
@@ -45,5 +46,8 @@ st.write(df)
 
 st.image('artifacts/forecast_90days.png')
 
-
-
+num = 0
+while True:
+    st.write(f'Working {num}')
+    sleep(10)
+    num += 1
