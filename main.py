@@ -45,11 +45,12 @@ st.write(pred)
 
 # plot current weeks price and forecast
 st.markdown('## Current week price and forecast')
-plt.figure(figsize=(10,5))
-plt.plot(df.tail(7).index, df.tail(7).Close, label='Current week price')
-plt.plot(pred.Date, pred['Price (USD)'], label='Forecast')
-plt.legend()
-plt.ylabel('Price (USD)')
+fig, ax = plt.subplots(figsize=(10,5))
+ax.plot(df.tail(7).index, df.tail(7).Close, label='Current week price')
+ax.plot(pred.Date, pred['Price (USD)'], label='Forecast')
+ax.legend()
+ax.set_ylabel('Price (USD)')
+st.pyplot(fig)
 
 # model performance
 st.markdown('### Model Performance')
