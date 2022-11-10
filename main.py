@@ -10,6 +10,7 @@ import yfinance as yf
 from streamlit_autorefresh import st_autorefresh
 from update_model.metrics import update_metrics
 from update_model.retrain import retrain_model
+import matplotlib.pyplot as plt
 
 def load_model():
     model = pickle.load(open('artifacts/model.pkl', 'rb'))
