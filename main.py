@@ -50,10 +50,9 @@ plt.plot(df.tail(7).index, df.tail(7).Close, label='Current week price')
 plt.plot(pred.Date, pred['Price (USD)'], label='Forecast')
 plt.legend()
 plt.ylabel('Price (USD)')
-st.pyplot()
 
 # model performance
-st.write('Model performance:')
+st.markdown('### Model Performance')
 df = pd.read_csv('artifacts/metrics.csv')
 st.write(df)
 

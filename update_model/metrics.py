@@ -62,7 +62,7 @@ def update_metrics():
     plt.plot(y_test.index, yhat, label='Predicted')
     plt.ylabel('BTC-USD Price')
     plt.legend()
-    plt.savefig('artifacts/forecast_90days.png')
+    plt.savefig('artifacts/forecast_90days.png', bbox_inches='tight')
 
     metrics = save_metrics(yhat,y_test.values)
     metrics.to_csv('artifacts/metrics.csv', index=False)
