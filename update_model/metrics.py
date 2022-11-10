@@ -43,17 +43,17 @@ def update_metrics():
     df_train = df[:-90]
     df_test = df[-90:]
     # for artifacts
-    X_train, y_train = LSTM_data(df_train, 6)
+    X_train, y_train = LSTM_data(df_train, 8)
     n_features = 1
     X_train = X_train.values.reshape((X_train.shape[0], X_train.shape[1], n_features))
     model = Sequential()
-    model.add(Bidirectional(LSTM(50, activation='relu'), input_shape=(5, n_features)))
+    model.add(Bidirectional(LSTM(50, activation='relu'), input_shape=(7, n_features)))
     model.add(Dense(1))
     model.compile(optimizer='adam', loss='mse')
     model.fit(X_train, y_train.values, epochs=200, verbose=0)
 
     #  prediction
-    X_test, y_test = LSTM_data(df_test, 6)
+    X_test, y_test = LSTM_data(df_test, 8)
     X_test = X_test.values.reshape((X_test.shape[0], X_test.shape[1], n_features))
     yhat = model.predict(X_test, verbose=0)
 

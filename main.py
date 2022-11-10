@@ -17,7 +17,8 @@ def load_model():
     return model
 
 df = yf.download(tickers='BTC-USD', period = '6y', interval = '1d')
-
+update_metrics()
+retrain_model()
 # predict for next 7 days
 model = load_model()
 pred_list = []
@@ -50,7 +51,7 @@ df2 = df2[['Date', 'Close']]
 df2 = df2.rename(columns={'Close': 'Price (USD)'})
 df2.Date = pd.to_datetime(df2.Date)
 
-fig, ax = plt.subplots(figsize=(20,10))
+fig, ax = plt.subplots(figsize=(15,10))
 ax.plot(df2.Date, df2['Price (USD)'], label='Current week price')
 ax.plot(pred.Date, pred['Price (USD)'], label='Forecast')
 ax.legend()
