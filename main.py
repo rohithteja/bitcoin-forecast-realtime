@@ -42,15 +42,16 @@ st.write(pred)
 
 # plot current weeks price and forecast
 st.markdown('## Current week price and forecast')
-df2 = df.tail(7)
-df2['Date'] = df2.index
-df2 = df2[['Date', 'Close']]
-df2 = df2.rename(columns={'Close': 'Price (USD)'})
-df2.Date = pd.to_datetime(df2.Date)
+df3 = df.tail(7)
+df3['Date'] = df2.index
+df3 = df3[['Date', 'Close']]
+df3 = df3.rename(columns={'Close': 'Predicted Price (USD)'})
+df3.Date = pd.to_datetime(df3.Date)
 
 fig, ax = plt.subplots(figsize=(15,10))
-ax.plot(df2.Date, df2['Price (USD)'], label='Current week price')
-ax.plot(pred.Date, pred['Price (USD)'], label='Forecast')
+ax.plot(df3.Date, df3['Predicted Price (USD)'], label='Current week price')
+df4 = pd.concat([df3, pred]).tail(8)
+ax.plot(df4.Date, df4['Predicted Price (USD)'], label='Forecast')
 ax.legend()
 ax.set_ylabel('Price (USD)')
 st.pyplot(fig)
@@ -59,7 +60,6 @@ st.pyplot(fig)
 st.markdown('### Model Performance')
 df = pd.read_csv('artifacts/metrics.csv')
 st.write(df)
-
 st.image('artifacts/forecast_90days.png')
 
 
