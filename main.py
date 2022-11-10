@@ -8,6 +8,8 @@ from keras.layers import Dense
 from keras.layers import Bidirectional
 import yfinance as yf
 from streamlit_autorefresh import st_autorefresh
+from update_model.metrics import update_metrics
+from update_model.retrain import retrain_model
 
 def load_model():
     model = pickle.load(open('artifacts/model.pkl', 'rb'))
@@ -47,4 +49,10 @@ st.write(df)
 st.image('artifacts/forecast_90days.png')
 
 
-st_autorefresh(interval=10000, key="dataframerefresh")
+# count = st_autorefresh(interval=1440 * 60 * 1000, key="dataframerefresh")
+count = st_autorefresh(interval=5 * 60 * 1000, key="dataframerefresh")
+
+if count == True:
+    st.write('Data is being refreshed')
+    update_metrics()
+    retrain_model()
