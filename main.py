@@ -46,8 +46,3 @@ st.write(df)
 
 st.image('artifacts/forecast_90days.png')
 
-num = 0
-while True:
-    st.write(f'Working {num}')
-    sleep(10)
-    num += 1
