@@ -24,7 +24,7 @@ model = load_model()
 df2 = df.copy()
 for i in range(8):
 
-    X_test = df2.tail(3).Close.T.values.reshape((1, 3, 1))
+    X_test = df2.tail(5).Close.T.values.reshape((1, 5, 1))
     pred = model.predict(X_test)[0]
     date = df2.tail(1).index[0] + pd.DateOffset(days=1)
     df2 = pd.concat([df2, pd.DataFrame(data=pred, index=[date], columns=['Close'])])

@@ -24,11 +24,11 @@ def LSTM_data(df, lookback):
 def retrain_model():
     df = yf.download(tickers='BTC-USD', period = '6y', interval = '1d')
     # retrain model
-    X, y = LSTM_data(df, 4)
+    X, y = LSTM_data(df, 6)
     n_features = 1
     X = X.values.reshape((X.shape[0], X.shape[1], n_features))
     model = Sequential()
-    model.add(Bidirectional(LSTM(50, activation='relu'), input_shape=(3, n_features)))
+    model.add(Bidirectional(LSTM(50, activation='relu'), input_shape=(5, n_features)))
     model.add(Dense(1))
     model.compile(optimizer='adam', loss='mse')
     # fit model
