@@ -45,8 +45,15 @@ st.write(pred)
 
 # plot current weeks price and forecast
 st.markdown('## Current week price and forecast')
+df2 = df.tail(7)
+df2['Date'] = df2.index
+df2 = df2[['Date', 'Close']]
+df2 = df2.rename(columns={'Close': 'Price (USD)'})
+df2.Date = pd.to_datetime(df2.Date)
+df2.Date = df2.Date.dt.strftime('%Y-%m-%d')
+
 fig, ax = plt.subplots(figsize=(10,5))
-ax.plot(df.tail(7).index, df.tail(7).Close, label='Current week price')
+ax.plot(df2.Date, df2['Price (USD)'], label='Current week price')
 ax.plot(pred.Date, pred['Price (USD)'], label='Forecast')
 ax.legend()
 ax.set_ylabel('Price (USD)')
